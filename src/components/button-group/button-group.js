@@ -10,6 +10,7 @@ class ButtonGroup extends Component {
             name: PropTypes.string.isRequired,
             action: PropTypes.func
         })),
+        orientation: PropTypes.oneOf(['row', 'column']),
         defaultSelectedId: PropTypes.string
     }
     static defaultProps = {
@@ -18,6 +19,7 @@ class ButtonGroup extends Component {
             { id: 'test2', name: 'Test Two', action: () => console.log('test2') },
             { id: 'test3', name: 'Test Three', action: () => console.log('test3') },
         ],
+        orientation: 'column',
         defaultSelectedId: 'test2'
     }
     constructor(props) {
@@ -38,9 +40,9 @@ class ButtonGroup extends Component {
         })
     }
     render() {
-        const { data } = this.props
+        const { data, orientation } = this.props
         return (
-            <Group length={data.length}>
+            <Group length={data.length} orientation={orientation}>
                 {data.map((v, i) =>
                     <Button
                         key={i}
@@ -57,13 +59,14 @@ export default ButtonGroup
 
 const Group = styled(Block)`
 flex: 1 1 auto;
-flex-direction: column;
+flex-direction: ${p=>p.orientation};
 background-color: rgba(15, 15, 15, 0.9);
 border: 1px solid rgba(0, 0, 0, 0.1);
 color: rgba(255, 255, 255, 0.75);
 border-radius: 3px;
-padding: 15px 0;
-height: ${p => p.length * 50}px;
+${p=>p.orientation === 'column' ? `padding: 15px 0;` : `padding: 0 15px;`};
+${p=>p.orientation === 'column' ? `height: ${p.length * 50}px` : `min-height: 50px`};
+
 `
 const Button = styled(Block)`
 justify-content: center;
