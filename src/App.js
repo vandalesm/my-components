@@ -1,34 +1,31 @@
 import React, { Component } from 'react'
+//import styled from 'styled-components'
+import { Block } from './common/block'
+import ButtonGroup from './components/button-group'
 
-import Particle from './components/particle/particle.js'
+import ParticleExample from './components/particle/example'
+import SplitterExample from './components/splitter/example'
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      rect: {}
+      selectedComponent: <span />
     }
-  }
-  componentDidMount() {
-    this.setState({ rect: this.refs.container.getBoundingClientRect() })
+    this.components = [
+      { id: 'particle', name: 'Particle', action: (item) => this.setState({ selectedComponent: item.component }), component: <ParticleExample /> },
+      { id: 'splitter', name: 'Splitter', action: (item) => this.setState({ selectedComponent: item.component }), component: <SplitterExample /> },
+    ]
   }
   render() {
     return (
-      <div ref='container' style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'black'
-      }}>
-        <Particle
-          width={this.state.rect.width}
-          height={600}
-          nodeCount={200}
-          radius={3.5}
-          minDistance={80}
-          maxDistance={100}
-          fillColor='rgba(255,255,255,1)'
-          strokeColor='rgba(255,255,255,1)' />
-      </div>
+      <Block>
+        <Block style={{ width: '250px', padding: '10px', flex: '0 0 auto' }}>
+          <ButtonGroup data={this.components} defaultSelectedId='splitter' />
+        </Block>
+        <Block style={{ padding: '10px' }}>
+          {this.state.selectedComponent}
+        </Block>
+      </Block>
     )
   }
 }

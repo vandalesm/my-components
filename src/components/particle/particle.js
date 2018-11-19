@@ -36,6 +36,17 @@ class Particle extends Component {
     componentWillUnmount() {
         clearInterval(this.interval)
     }
+    shouldComponentUpdate(nextProps, nextState) {
+        if (nextProps.width !== this.props.width || nextProps.height !== this.props.height) {
+            return true
+        }
+        return false
+    }
+    componentDidUpdate() {
+        console.log('update')
+        clearInterval(this.interval)
+        this.draw()
+    }
     draw() {
         let cGen = this.updateCanvas()
         this.interval = setInterval(() => {
