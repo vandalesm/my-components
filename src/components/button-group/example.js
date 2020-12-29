@@ -19,8 +19,8 @@ class ButtonGroupExample extends Component {
     }
     render() {
         return (
-            <Block column justifyCenter>
-                <Block style={{ flex: '0 0 auto', width: '300px' }}>
+            <Block column justifyCenter alignItemsCenter>
+                <Block noGrow baseWidth='300px'>
                     <ButtonGroup data={this.data}></ButtonGroup>
                 </Block>
                 <Block withMargin />

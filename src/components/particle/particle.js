@@ -43,7 +43,6 @@ class Particle extends Component {
         return false
     }
     componentDidUpdate() {
-        console.log('update')
         clearInterval(this.interval)
         this.draw()
     }

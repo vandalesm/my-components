@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "core-js": "^2.5.7",
     "d3": "^5.7.0",
+    "draft-js": "^0.10.5",
     "prop-types": "^15.6.2",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
+    "react-icons": "^3.2.2",
     "react-motion": "^0.5.2",
     "react-scripts": "2.1.1",
     "styled-components": "^4.0.3"

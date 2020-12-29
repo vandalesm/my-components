@@ -98,10 +98,11 @@ min-height: 30px;
 overflow: auto;
 `
 const Handle = styled.div`
-${p => p.orientation === 'row' ? `width: 10px` : `height: 10px`};
+display: 'flex';
+flex: 0 0 10px;
 backface-visibility: hidden;
-background-color: rgba(15, 15, 15, 0.1);
-z-index: 9;
+background-color: rgba(15, 15, 15, 0.25);
+z-index: 1;
 &:hover {
     cursor: ${p => p.orientation === 'row' ? 'col-resize' : 'row-resize'};
 }

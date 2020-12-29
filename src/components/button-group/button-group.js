@@ -71,6 +71,7 @@ ${p=>p.orientation === 'column' ? `height: ${p.length * 50}px` : `min-height: 50
 const Button = styled(Block)`
 justify-content: center;
 align-items: center;
+width: 100%;
 height: 50px;
 ${p => p.active && `
   background-color: rgba(15, 15, 15, 1);

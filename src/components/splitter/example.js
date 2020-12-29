@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 
 import { Block } from '../../common/block'
 import Splitter from './splitter'
-import Particle from '../particle'
 class SplitterExample extends Component {
     constructor(props) {
         super(props)
@@ -22,48 +21,50 @@ class SplitterExample extends Component {
         })
     }
     render() {
-        const { panel1Width, panel2Width, panel1Height, panel2Height } = this.state
+        const { panel2Width, panel2Height } = this.state
+        const itemCount = Math.floor(panel2Width / 100) * Math.floor(panel2Height / 100)
+        const arr = Array(itemCount).fill('x')
         return (
-            <Block style={{ height: '600px', flex: '0 0 900px', border: '1px solid black', overflow: 'hidden' }}>
+            <Block withBorder style={{ height: '650px', flex: '0 0 900px', overflow: 'hidden' }}>
                 <Splitter orientation='column'
                     panel1={() => (
                         <Splitter orientation='row'
                             panel1={() => (
-                                <Block>
-                                    <Particle
-                                        width={panel1Width}
-                                        height={panel1Height}
-                                        nodeCount={Math.floor(panel1Width / 5)}
-                                        radius={2.5}
-                                        minDistance={40}
-                                        maxDistance={60}
-                                        fillColor='rgba(0,0,0,1)'
-                                        strokeColor='rgba(0,0,0,1)' />
+                                <Block justifyCenter alignItemsCenter withWrap withClip>
+                                    {Array(4).fill('x').map((v, i) => {
+                                        return (
+                                            <Block key={i} noGrow baseWidth='100px' style={{ height: '100px' }} alignItemsStretch>
+                                                <Block justifyCenter alignItemsCenter style={{ margin: '5px', backgroundColor: 'rgba(15, 15, 15, 0.9)', color: 'white' }}>{i + 1}</Block>
+                                            </Block>
+                                        )
+                                    })}
                                 </Block>
                             )}
                             panel2={() => (
-                                <Block>
-                                    <Particle
-                                        width={panel2Width}
-                                        height={panel2Height}
-                                        nodeCount={Math.floor(panel2Width / 5)}
-                                        radius={2.5}
-                                        minDistance={40}
-                                        maxDistance={60}
-                                        fillColor='blue'
-                                        strokeColor='blue' />
+                                <Block justifyCenter alignItemsCenter withWrap withClip>
+                                    {Array(4).fill('x').map((v, i) => {
+                                        return (
+                                            <Block key={i} noGrow baseWidth='100px' style={{ height: '100px' }} alignItemsStretch>
+                                                <Block justifyCenter alignItemsCenter style={{ margin: '5px', backgroundColor: 'rgba(15, 15, 15, 0.9)', color: 'white' }}>{i + 1}</Block>
+                                            </Block>
+                                        )
+                                    })}
                                 </Block>
                             )}
-                            onUpdate={this.handleOnUpdate.bind(this)}
                         />
                     )}
                     panel2={() => (
-                        <Block style={{ padding: '20px', overflow: 'hidden'}}>
-                            <Block style={{ width: '100px', height: '100px', backgroundColor: 'blue' }}>
-
-                            </Block>
+                        <Block justifyCenter alignItemsCenter withWrap withClip>
+                            {arr.map((v, i) => {
+                                return (
+                                    <Block key={i} noGrow baseWidth='100px' style={{ height: '100px' }} alignItemsStretch>
+                                        <Block justifyCenter alignItemsCenter style={{ margin: '5px', backgroundColor: 'rgba(15, 15, 15, 0.9)', color: 'white' }}>{i + 1}</Block>
+                                    </Block>
+                                )
+                            })}
                         </Block>
                     )}
+                    onUpdate={this.handleOnUpdate.bind(this)}
                 />
             </Block>
         )
